@@ -1,0 +1,17 @@
+services:
+  vps-admin:
+    build: .
+    container_name: vps-admin
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - vps_admin_data:/app/data
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/log:/host/var/log:ro
+    environment:
+      VPS_ADMIN_DB_PATH: /app/data/vps_admin.sqlite3
+      VPS_ADMIN_AUTH_LOG_PATHS: /host/var/log/auth.log,/host/var/log/secure
+
+volumes:
+  vps_admin_data:

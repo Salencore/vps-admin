@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VPS Admin</title>
+    <link rel="stylesheet" href="/assets/app.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section id="login" class="login">
+        <form class="panel" id="login-form">
+          <h1>VPS Admin</h1>
+          <input name="username" autocomplete="username" placeholder="Логин" required />
+          <input name="password" type="password" autocomplete="current-password" placeholder="Пароль" required />
+          <button type="submit">Войти</button>
+          <p id="login-error" class="error"></p>
+        </form>
+      </section>
+
+      <section id="app" class="app hidden">
+        <header class="topbar">
+          <div>
+            <h1>VPS Admin</h1>
+            <p id="host-line"></p>
+          </div>
+          <button id="logout">Выйти</button>
+        </header>
+
+        <nav class="tabs">
+          <button data-tab="dashboard" class="active">Dashboard</button>
+          <button data-tab="containers">Containers</button>
+          <button data-tab="security">Security</button>
+          <button data-tab="audit">Audit</button>
+          <button data-tab="settings">Settings</button>
+        </nav>
+
+        <section id="dashboard" class="tab active">
+          <div class="metrics">
+            <article><span>CPU</span><strong id="cpu">-</strong></article>
+            <article><span>RAM</span><strong id="ram">-</strong></article>
+            <article><span>Disk</span><strong id="disk">-</strong></article>
+            <article><span>Uptime</span><strong id="uptime">-</strong></article>
+          </div>
+        </section>
+
+        <section id="containers" class="tab">
+          <div id="container-list" class="list"></div>
+          <pre id="logs" class="logs"></pre>
+        </section>
+
+        <section id="security" class="tab">
+          <div id="security-list" class="list"></div>
+        </section>
+
+        <section id="audit" class="tab">
+          <div id="audit-list" class="list"></div>
+        </section>
+
+        <section id="settings" class="tab">
+          <form id="settings-form" class="settings-grid">
+            <label>Telegram bot token<input name="telegram_bot_token" /></label>
+            <label>Telegram chat id<input name="telegram_chat_id" /></label>
+            <label>CPU alert %<input name="cpu_alert_percent" type="number" min="1" max="100" /></label>
+            <label>RAM alert %<input name="ram_alert_percent" type="number" min="1" max="100" /></label>
+            <label>Disk alert %<input name="disk_alert_percent" type="number" min="1" max="100" /></label>
+            <button type="submit">Сохранить</button>
+          </form>
+        </section>
+      </section>
+    </main>
+    <script src="/assets/app.js"></script>
+  </body>
+</html>
